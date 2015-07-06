@@ -24,6 +24,7 @@ var ReactPropTypeLocations = require('ReactPropTypeLocations');
 var ReactPropTypeLocationNames = require('ReactPropTypeLocationNames');
 var ReactReconciler = require('ReactReconciler');
 var ReactUpdates = require('ReactUpdates');
+var ExecutionEnvironment = require('ExecutionEnvironment');
 
 var assign = require('Object.assign');
 var emptyObject = require('emptyObject');
@@ -623,6 +624,7 @@ var ReactCompositeComponentMixin = {
     var nextState = this._processPendingState(nextProps, nextContext);
 
     var shouldUpdate =
+      ExecutionEnvironment.canUseDOM &&
       this._pendingForceUpdate ||
       !inst.shouldComponentUpdate ||
       inst.shouldComponentUpdate(nextProps, nextState, nextContext);
